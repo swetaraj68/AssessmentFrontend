@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import HomePage from "./HomePage";
+import { Route, Routes } from "react-router-dom";
+import { ProductPage } from "./ProductPage";
+import Child from "./Child";
+import { useState } from "react";
+import ArrayMethod from "./component/ArrayMethod";
+import Reference from "./component/Reference";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [heading , setHeading] =useState("")
+	return (
+		<div className='App'>
+			<Child 
+			setHeading={setHeading}
+			/>
+			<h1>Coming from Child : {heading}</h1>
+			<hr/>
+			<ArrayMethod/>
+			<hr/>
+			<Reference/>
+			<hr/>
+			
+			<h2>Dynamic Routing Of Products</h2>
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/product/:title' element={<ProductPage />} />
+			</Routes>
+			
+		</div>
+	);
 }
 
 export default App;
